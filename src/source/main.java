@@ -2,9 +2,8 @@ package source;
 
 import java.io.*;
 import java.util.Scanner;
-// import source.boxFilter;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         int num = 1024;
         System.out.println(num);
