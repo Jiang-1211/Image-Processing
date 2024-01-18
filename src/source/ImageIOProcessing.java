@@ -37,13 +37,17 @@ public class ImageIOProcessing {
         ImageIO.write(image, "jpeg", output);
     }
 
-    public static void mergeRGB(int[][] pixelRed, int[][] pixelGreen, int[][] pixelBlue, int[][] matrixOutput,int height, int width) {
+    public static int [][] mergeRGB(int[][] pixelRed, int[][] pixelGreen, int[][] pixelBlue,int height, int width) {
+        int[][] pixelOutput=new int[height][width*3];
+        
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                matrixOutput[i][j * 3] = pixelRed[i][j];
-                matrixOutput[i][j * 3 + 1] = pixelGreen[i][j];
-                matrixOutput[i][j * 3 + 2] = pixelBlue[i][j];
+                pixelOutput[i][j * 3] = pixelRed[i][j];
+                pixelOutput[i][j * 3 + 1] = pixelGreen[i][j];
+                pixelOutput[i][j * 3 + 2] = pixelBlue[i][j];
             }
         }
+        
+        return pixelOutput;
     }
 }
