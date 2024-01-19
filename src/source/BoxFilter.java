@@ -41,6 +41,6 @@ public class BoxFilter {
             }
         }
 
-        return sum;
+        return sum/=Math.pow(boxSize, 2);
     }
 }

@@ -82,17 +82,17 @@ public class ValueIOProcessing {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the size N of the NxN box : ");
-        int bosSize = scanner.nextInt();
+        int boxSize = scanner.nextInt();
         
         System.out.println("------------------------------");
 
-        while (bosSize < 1) {
+        while (boxSize < 1) {
             System.out.print("Please enter available number : ");
-            bosSize = scanner.nextInt();
+            boxSize = scanner.nextInt();
             
             System.out.println("------------------------------");
         }
         
-        return bosSize;
+        return boxSize;
     }
 }
