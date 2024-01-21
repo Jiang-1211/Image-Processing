@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
+import static source.ContrastStretching.*;
+import static source.MedianFilter.*;
 import static source.IdentityFilter.*;
 import static source.BoxFilter.*;
 import static source.ImageIOProcessing.*;
@@ -53,7 +55,47 @@ public class Main {
                     int boxSize = getBoxSize();
                     pixelOutput = getIdentityFilter(pixelRed, pixelGreen, pixelBlue, height, width, boxSize);
                     break;
+                }
+                case 3 -> {
+                    int boxSize=getBoxSize();
+                    pixelOutput=getMedianFilter(pixelRed, pixelGreen, pixelBlue, height, width, boxSize);
+                    break;
+                }
+                case 4 -> {
+                    pixelOutput=getContrastStretching(pixelRed, pixelGreen, pixelBlue, height, width);
+                    break;
+                }
+                case 5 -> {
 
+                    break;
+                }
+                case 6 -> {
+
+                    break;
+                }
+                case 7 -> {
+
+                    break;
+                }
+                case 8 -> {
+
+                    break;
+                }
+                case 9 -> {
+
+                    break;
+                }
+                case 10 -> {
+
+                    break;
+                }
+                case 11 -> {
+
+                    break;
+                }
+                case 12 -> {
+
+                    break;
                 }
                 default ->
                     throw new AssertionError();
