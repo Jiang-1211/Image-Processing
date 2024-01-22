@@ -1,66 +1,53 @@
 package source;
 
-import static source.ImageIOProcessing.mergeRGB;
-
 public class ContrastStretching {
 
-    public static int[][] getContrastStretching(int[][] pixelRed, int[][] pixelGreen, int[][] pixelBlue, int height, int width) {
-        int[][] pixelContrastStretching;
+    public static int[][] getContrastStretching(int[][] pixelInput, int height, int width) {
+        int[][] pixelContrastStretching=new int[height][width*3];
 
-        pixelRed = doContrastStretching(pixelRed, height, width);
-        pixelGreen = doContrastStretching(pixelGreen, height, width);
-        pixelBlue = doContrastStretching(pixelBlue, height, width);
-
-        pixelContrastStretching = mergeRGB(pixelRed, pixelGreen, pixelBlue, height, width);
+        doContrastStretching(pixelContrastStretching, pixelInput, height, width, 0);
+        doContrastStretching(pixelContrastStretching, pixelInput, height, width, 1);
+        doContrastStretching(pixelContrastStretching, pixelInput, height, width, 2);
 
         return pixelContrastStretching;
     }
 
-    private static int[][] doContrastStretching(int[][] pixelInput, int height, int width) {
-        int[][] pixelContrastStretching = new int[height][width];
-        int maxValue = getMaxValue(pixelInput, height, width);
-        int minValue = getMinValue(pixelInput, height, width);
+    private static void doContrastStretching(int[][] pixelContrastStretching, int[][] pixelInput, int height, int width, int color) {
+        int maxValue = getMaxValue(pixelInput, height, width, color);
+        int minValue = getMinValue(pixelInput, height, width, color);
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                pixelContrastStretching[i][j] = countContrastStretching(pixelInput[i][j], maxValue, minValue);
+                pixelContrastStretching[i][j * 3 + color] = 255 * (pixelInput[i][j * 3 + color] - minValue) / (maxValue - minValue);
             }
         }
-
-        return pixelContrastStretching;
     }
 
-    private static int getMaxValue(int[][] pixelInput, int height, int width) {
+    private static int getMaxValue(int[][] pixelInput, int height, int width, int color) {
         int maxValue = 0;
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if(pixelInput[i][j]>maxValue){
-                    maxValue=pixelInput[i][j];
+                if (pixelInput[i][j * 3 + color] > maxValue) {
+                    maxValue = pixelInput[i][j * 3 + color];
                 }
             }
         }
-        
+
         return maxValue;
     }
 
-    private static int getMinValue(int[][] pixelInput, int height, int width) {
+    private static int getMinValue(int[][] pixelInput, int height, int width, int color) {
         int minValue = 255;
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (pixelInput[i][j] < minValue) {
-                    minValue = pixelInput[i][j];
+                if (pixelInput[i][j * 3 + color] < minValue) {
+                    minValue = pixelInput[i][j * 3 + color];
                 }
             }
         }
 
         return minValue;
-    }
-
-    private static int countContrastStretching(int pixelValue, int maxValue, int minValue) {
-        final int MAX_PIXEL=255;
-        
-        return MAX_PIXEL*(pixelValue-minValue)/(maxValue-minValue);
     }
 }

@@ -10,6 +10,7 @@ import static source.IdentityFilter.*;
 import static source.BoxFilter.*;
 import static source.ImageIOProcessing.*;
 import static source.ValueIOProcessing.*;
+import static source.TestFunction.*;
 
 public class Main {
 
@@ -37,32 +38,29 @@ public class Main {
             int height = image.getHeight();
             int width = image.getWidth();
 
-            int[][] pixelRed = new int[height][width];
-            int[][] pixelGreen = new int[height][width];
-            int[][] pixelBlue = new int[height][width];
-
+            int[][] pixelInput;
             int[][] pixelOutput = new int[height][width * 3];
 
-            inputImage(pixelRed, pixelGreen, pixelBlue, input);
+            pixelInput = getInputImage(input);
 
             switch (filterNumber) {
                 case 1 -> {
                     int boxSize = getBoxSize();
-                    pixelOutput = getBoxFilter(pixelRed, pixelGreen, pixelBlue, height, width, boxSize);
+                    pixelOutput = getBoxFilter(pixelInput, height, width, boxSize);
                     break;
                 }
                 case 2 -> {
                     int boxSize = getBoxSize();
-                    pixelOutput = getIdentityFilter(pixelRed, pixelGreen, pixelBlue, height, width, boxSize);
+                    pixelOutput = getIdentityFilter(pixelInput, height, width, boxSize);
                     break;
                 }
                 case 3 -> {
-                    int boxSize=getBoxSize();
-                    pixelOutput=getMedianFilter(pixelRed, pixelGreen, pixelBlue, height, width, boxSize);
+                    int boxSize = getBoxSize();
+                    pixelOutput = getMedianFilter(pixelInput, height, width, boxSize);
                     break;
                 }
                 case 4 -> {
-                    pixelOutput=getContrastStretching(pixelRed, pixelGreen, pixelBlue, height, width);
+                    pixelOutput=getContrastStretching(pixelInput, height, width);
                     break;
                 }
                 case 5 -> {
