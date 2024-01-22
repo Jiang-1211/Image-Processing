@@ -26,7 +26,7 @@ public class ImageIOProcessing {
         return pixelInput;
     }
 
-    public static void outputImage(int[][] pixelOutput, int width, int height, File output) throws Exception {
+    public static void outputImage(int[][] pixelOutput, int height, int width, File output) throws Exception {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         for (int i = 0; i < height; i++) {
