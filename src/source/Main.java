@@ -4,13 +4,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
+import static source.HistogramEqualization.*;
 import static source.ContrastStretching.*;
 import static source.MedianFilter.*;
 import static source.IdentityFilter.*;
 import static source.BoxFilter.*;
 import static source.ImageIOProcessing.*;
 import static source.ValueIOProcessing.*;
-import static source.TestFunction.*;
+//import static source.TestFunction.*;
 
 public class Main {
 
@@ -64,7 +65,7 @@ public class Main {
                     break;
                 }
                 case 5 -> {
-
+                    pixelOutput=getHistogram(pixelInput, height, width);
                     break;
                 }
                 case 6 -> {
