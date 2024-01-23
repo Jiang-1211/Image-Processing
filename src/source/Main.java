@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
+import static source.GammaTransformation.*;
+import static source.LogTransformation.*;
+import static source.NegativaTransformation.*;
 import static source.HistogramEqualization.*;
 import static source.ContrastStretching.*;
 import static source.MedianFilter.*;
@@ -61,23 +64,24 @@ public class Main {
                     break;
                 }
                 case 4 -> {
-                    pixelOutput=getContrastStretching(pixelInput, height, width);
+                    pixelOutput = getContrastStretching(pixelInput, height, width);
                     break;
                 }
                 case 5 -> {
-                    pixelOutput=getHistogram(pixelInput, height, width);
+                    pixelOutput = getHistogram(pixelInput, height, width);
                     break;
                 }
                 case 6 -> {
-
+                    pixelOutput = getNegative(pixelInput, height, width);
                     break;
                 }
                 case 7 -> {
-
+                    pixelOutput = getLogTransformation(pixelInput, height, width, 10);
                     break;
                 }
                 case 8 -> {
-
+                    double gamma = getGamma();
+                    pixelOutput = getGammaTransformation(pixelInput, height, width, gamma, 1);
                     break;
                 }
                 case 9 -> {

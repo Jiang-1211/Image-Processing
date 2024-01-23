@@ -11,18 +11,18 @@ public class ImageIOProcessing {
 
         int height = image.getHeight();
         int width = image.getWidth();
-        
-        int[][] pixelInput=new int[height][width*3];
+
+        int[][] pixelInput = new int[height][width * 3];
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 int rgb = image.getRGB(j, i);
-                pixelInput[i][j*3] = (rgb >> 16) & 0xFF;
-                pixelInput[i][j*3+1] = (rgb >> 8) & 0xFF;
-                pixelInput[i][j*3+2] = rgb & 0xFF;
+                pixelInput[i][j * 3] = (rgb >> 16) & 0xFF;
+                pixelInput[i][j * 3 + 1] = (rgb >> 8) & 0xFF;
+                pixelInput[i][j * 3 + 2] = rgb & 0xFF;
             }
         }
-        
+
         return pixelInput;
     }
 

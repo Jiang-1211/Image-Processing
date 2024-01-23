@@ -3,7 +3,7 @@ package source;
 public class ContrastStretching {
 
     public static int[][] getContrastStretching(int[][] pixelInput, int height, int width) {
-        int[][] pixelContrastStretching=new int[height][width*3];
+        int[][] pixelContrastStretching = new int[height][width * 3];
 
         doContrastStretching(pixelContrastStretching, pixelInput, height, width, 0);
         doContrastStretching(pixelContrastStretching, pixelInput, height, width, 1);
